@@ -1,6 +1,6 @@
-package cn.cat.rpc.demo.spring.bean;
+package cn.cat.rpc.demo.config.spring.bean;
 
-import cn.cat.rpc.demo.ConsumerConfig;
+import cn.cat.rpc.demo.config.ConsumerConfig;
 import org.springframework.beans.factory.FactoryBean;
 
 public class ConsumerBean<T> extends ConsumerConfig<T> implements FactoryBean {

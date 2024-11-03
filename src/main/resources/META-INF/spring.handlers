@@ -1,1 +1,1 @@
-http\://rpc.itstack.org/schema/rpc=cn.cat.rpc.demo.spring.MyNamespaceHandler
+http\://rpc.itstack.org/schema/rpc=cn.cat.rpc.demo.config.spring.MyNamespaceHandler

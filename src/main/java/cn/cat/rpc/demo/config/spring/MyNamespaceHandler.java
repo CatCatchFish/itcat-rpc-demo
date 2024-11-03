@@ -1,8 +1,8 @@
-package cn.cat.rpc.demo.spring;
+package cn.cat.rpc.demo.config.spring;
 
-import cn.cat.rpc.demo.spring.bean.ConsumerBean;
-import cn.cat.rpc.demo.spring.bean.ProviderBean;
-import cn.cat.rpc.demo.spring.bean.ServerBean;
+import cn.cat.rpc.demo.config.spring.bean.ConsumerBean;
+import cn.cat.rpc.demo.config.spring.bean.ProviderBean;
+import cn.cat.rpc.demo.config.spring.bean.ServerBean;
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 
 public class MyNamespaceHandler extends NamespaceHandlerSupport {

@@ -1,6 +1,6 @@
-package cn.cat.rpc.demo.spring.bean;
+package cn.cat.rpc.demo.config.spring.bean;
 
-import cn.cat.rpc.demo.ProviderConfig;
+import cn.cat.rpc.demo.config.ProviderConfig;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

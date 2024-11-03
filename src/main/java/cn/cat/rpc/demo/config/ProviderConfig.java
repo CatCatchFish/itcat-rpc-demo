@@ -1,4 +1,4 @@
-package cn.cat.rpc.demo;
+package cn.cat.rpc.demo.config;
 
 public class ProviderConfig {
     // 接口

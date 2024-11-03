@@ -1,4 +1,4 @@
-package cn.cat.rpc.demo.spring;
+package cn.cat.rpc.demo.config.spring;
 
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.RootBeanDefinition;
