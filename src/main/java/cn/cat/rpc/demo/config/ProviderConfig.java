@@ -2,11 +2,11 @@ package cn.cat.rpc.demo.config;
 
 public class ProviderConfig {
     // 接口
-    private String nozzle;
+    protected String nozzle;
     // 映射
-    private String ref;
+    protected String ref;
     // 别名
-    private String alias;
+    protected String alias;
 
     // 发布
     protected void doExport() {

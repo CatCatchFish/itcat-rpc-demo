@@ -35,7 +35,7 @@ public class MyBeanDefinitionParser implements BeanDefinitionParser {
             beanDefinition.getPropertyValues().addPropertyValue(methodName, value);
         }
 
-        return null;
+        return beanDefinition;
     }
 
     private boolean isProperty(Method method, Class<?> beanClass) {

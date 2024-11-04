@@ -1,14 +1,24 @@
 package cn.cat.rpc.demo.config;
 
-public class ConsumerConfig<T> {
+public class ConsumerConfig {
     // 接口
-    private String nozzle;
+    protected String nozzle;
     // 别名
-    private String alias;
+    protected String alias;
 
-    // 动态代理链接
-    protected synchronized T refer() {
-        System.out.format("消费者信息 => 【接口：%s】【别名：%s】\r\n", nozzle, alias);
-        return null;
+    public String getNozzle() {
+        return nozzle;
+    }
+
+    public void setNozzle(String nozzle) {
+        this.nozzle = nozzle;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 }

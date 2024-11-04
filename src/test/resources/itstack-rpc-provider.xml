@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	  http://rpc.itstack.org/schema/rpc http://rpc.itstack.org/schema/rpc/rpc.xsd">
 
-    <rpc:provider id="provider_helloService" nozzle="cn.cat.rpc.demo.test.service.IHelloService"
+    <rpc:provider id="provider_helloService" nozzle="cn.cat.rpc.demo.test.service.HelloService"
                   ref="helloService" alias="itStackRpc" />
 
 </beans>

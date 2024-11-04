@@ -21,7 +21,7 @@ public class ClassLoaderUtil {
      * @return Class
      * @throws ClassNotFoundException 找不到类
      */
-    public static Class forName(String className)
+    public static Class<?> forName(String className)
             throws ClassNotFoundException {
         return forName(className, true);
     }
@@ -34,7 +34,7 @@ public class ClassLoaderUtil {
      * @return Class
      * @throws ClassNotFoundException 找不到类
      */
-    public static Class forName(String className, boolean initialize)
+    public static Class<?> forName(String className, boolean initialize)
             throws ClassNotFoundException {
         return Class.forName(className, initialize, getCurrentClassLoader());
     }

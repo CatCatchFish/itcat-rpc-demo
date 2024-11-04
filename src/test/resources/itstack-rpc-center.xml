@@ -4,6 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	  http://rpc.itstack.org/schema/rpc http://rpc.itstack.org/schema/rpc/rpc.xsd">
 
-    <rpc:consumer id="consumer_helloService" nozzle="cn.cat.rpc.demo.test.service.HelloService" alias="itStackRpc"/>
+    <!-- 注册中心 -->
+    <rpc:server id="consumer_itstack" host="127.0.0.1" port="6379"/>
 
 </beans>

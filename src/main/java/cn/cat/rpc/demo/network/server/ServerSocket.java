@@ -1,5 +1,6 @@
 package cn.cat.rpc.demo.network.server;
 
+import cn.cat.rpc.demo.domain.LocalServerInfo;
 import cn.cat.rpc.demo.network.codec.RpcDecoder;
 import cn.cat.rpc.demo.network.codec.RpcEncoder;
 import cn.cat.rpc.demo.network.msg.Request;
@@ -61,6 +62,9 @@ public class ServerSocket implements Runnable {
             while (NetUtil.isPortUsing(port)) {
                 port++;
             }
+            LocalServerInfo.LOCAL_HOST = NetUtil.getHost();
+            LocalServerInfo.LOCAL_PORT = port;
+
             f = b.bind(port).sync();
             f.channel().closeFuture().sync();
 
