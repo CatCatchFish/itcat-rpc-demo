@@ -17,6 +17,14 @@ public class ClientSocket implements Runnable {
 
     private ChannelFuture future;
 
+    private final String inetHost;
+    private final int inetPort;
+
+    public ClientSocket(String inetHost, int inetPort) {
+        this.inetHost = inetHost;
+        this.inetPort = inetPort;
+    }
+
     @Override
     public void run() {
         EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -34,7 +42,7 @@ public class ClientSocket implements Runnable {
                             new MyClientHandler());
                 }
             });
-            ChannelFuture f = b.connect("127.0.0.1", 7397).sync();
+            ChannelFuture f = b.connect(inetHost, inetPort).sync();
             this.future = f;
             f.channel().closeFuture().sync();
         } catch (InterruptedException e) {
