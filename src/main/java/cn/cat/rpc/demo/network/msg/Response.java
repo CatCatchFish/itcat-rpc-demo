@@ -1,8 +1,19 @@
 package cn.cat.rpc.demo.network.msg;
 
+import io.netty.channel.Channel;
+
 public class Response {
+    private transient Channel channel;
     private String requestId;
-    private String param;
+    private Object result;
+
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public void setChannel(Channel channel) {
+        this.channel = channel;
+    }
 
     public String getRequestId() {
         return requestId;
@@ -12,11 +23,11 @@ public class Response {
         this.requestId = requestId;
     }
 
-    public String getParam() {
-        return param;
+    public Object getResult() {
+        return result;
     }
 
-    public void setParam(String param) {
-        this.param = param;
+    public void setResult(Object result) {
+        this.result = result;
     }
 }

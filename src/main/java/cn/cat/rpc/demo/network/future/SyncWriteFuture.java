@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 public class SyncWriteFuture implements WriteFuture<Response> {
-    private CountDownLatch latch = new CountDownLatch(1);
+    private final CountDownLatch latch = new CountDownLatch(1);
     private final long begin = System.currentTimeMillis();
     private long timeout;
     private Response response;

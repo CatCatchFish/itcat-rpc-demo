@@ -38,7 +38,7 @@ public class ClientSocket implements Runnable {
             this.future = f;
             f.channel().closeFuture().sync();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         } finally {
             workerGroup.shutdownGracefully();
         }

@@ -6,7 +6,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 
 public class RpcEncoder extends MessageToByteEncoder {
-    private Class<?> genericClass;
+    private final Class<?> genericClass;
 
     public RpcEncoder(Class<?> genericClass) {
         this.genericClass = genericClass;
