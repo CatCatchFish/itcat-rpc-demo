@@ -16,4 +16,24 @@ public class Constants {
             return name;
         }
     }
+
+    public enum RpcSerializationType {
+        JSON("json"),
+        PROTOBUF("protobuf");
+        public final String name;
+
+        RpcSerializationType(String type) {
+            this.name = type;
+        }
+
+        public static RpcSerializationType get(String type) {
+            for (RpcSerializationType value : values()) {
+                if (value.name.equals(type)) {
+                    return value;
+                }
+            }
+            return null;
+        }
+
+    }
 }

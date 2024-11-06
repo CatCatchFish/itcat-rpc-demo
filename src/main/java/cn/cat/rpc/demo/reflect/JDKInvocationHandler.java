@@ -9,7 +9,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 public class JDKInvocationHandler implements InvocationHandler {
-    private Request request;
+    private final Request request;
 
     public JDKInvocationHandler(Request request) {
         this.request = request;

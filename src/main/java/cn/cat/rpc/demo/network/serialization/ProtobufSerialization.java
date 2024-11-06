@@ -1,4 +1,4 @@
-package cn.cat.rpc.demo.network.util;
+package cn.cat.rpc.demo.network.serialization;
 
 import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtobufIOUtil;
@@ -10,11 +10,11 @@ import org.objenesis.ObjenesisStd;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class SerializationUtil {
+public class ProtobufSerialization implements RpcSerialization {
     private static Map<Class<?>, Schema<?>> cachedSchema = new ConcurrentHashMap<>();
     private static Objenesis objenesis = new ObjenesisStd();
 
-    public SerializationUtil() {
+    public ProtobufSerialization() {
     }
 
     // 从缓存中获取Schema，如果没有则创建并缓存
@@ -28,7 +28,8 @@ public class SerializationUtil {
     }
 
     // 将对象序列化为字节数组
-    public static <T> byte[] serialize(T obj) {
+    @Override
+    public <T> byte[] serialize(T obj) {
         Class<T> cls = (Class<T>) obj.getClass();
         // 优化内存分配，提高序列化性能。
         LinkedBuffer buffer = LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE);
@@ -43,7 +44,7 @@ public class SerializationUtil {
     }
 
     // 将字节数组反序列化为对象
-    public static <T> T deserialize(byte[] data, Class<T> cls) {
+    public <T> T deserialize(byte[] data, Class<T> cls) {
         try {
             T message = objenesis.newInstance(cls);
             Schema<T> schema = getSchema(cls);

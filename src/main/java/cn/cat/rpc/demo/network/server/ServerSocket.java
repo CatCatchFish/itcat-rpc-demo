@@ -4,7 +4,6 @@ import cn.cat.rpc.demo.domain.LocalServerInfo;
 import cn.cat.rpc.demo.network.codec.RpcDecoder;
 import cn.cat.rpc.demo.network.codec.RpcEncoder;
 import cn.cat.rpc.demo.network.msg.Request;
-import cn.cat.rpc.demo.network.msg.Response;
 import cn.cat.rpc.demo.network.util.NetUtil;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -51,8 +50,8 @@ public class ServerSocket implements Runnable {
                         @Override
                         public void initChannel(SocketChannel ch) {
                             ch.pipeline().addLast(
-                                    new RpcDecoder(Request.class),
-                                    new RpcEncoder(Response.class),
+                                    new RpcDecoder(),
+                                    new RpcEncoder(),
                                     new MyServerHandler(applicationContext));
                         }
                     });

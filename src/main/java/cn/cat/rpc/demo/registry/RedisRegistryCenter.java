@@ -5,11 +5,11 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 public class RedisRegistryCenter {
-    private static Jedis jedis;
+    private static Jedis jedis;   //非切片额客户端连接
 
-    // 初始化redis
+    //初始化redis
     public static void init(String host, int port) {
-        // 连接池配置
+        // 池基本配置
         JedisPoolConfig config = new JedisPoolConfig();
         config.setMaxIdle(5);
         config.setTestOnBorrow(false);
@@ -26,7 +26,6 @@ public class RedisRegistryCenter {
      * @return 注册结果
      */
     public static Long registryProvider(String nozzle, String alias, String info) {
-        // info 是一段json字符串
         return jedis.sadd(nozzle + "_" + alias, info);
     }
 
@@ -43,4 +42,5 @@ public class RedisRegistryCenter {
     public static Jedis jedis() {
         return jedis;
     }
+
 }

@@ -37,8 +37,8 @@ public class ClientSocket implements Runnable {
                 @Override
                 public void initChannel(SocketChannel ch) throws Exception {
                     ch.pipeline().addLast(
-                            new RpcDecoder(Response.class),
-                            new RpcEncoder(Request.class),
+                            new RpcDecoder(),
+                            new RpcEncoder(),
                             new MyClientHandler());
                 }
             });

@@ -9,8 +9,6 @@ import cn.cat.rpc.demo.reflect.util.ClassLoaderUtil;
 import cn.cat.rpc.demo.registry.RedisRegistryCenter;
 import com.alibaba.fastjson.JSON;
 import io.netty.channel.ChannelFuture;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.util.Assert;
 
