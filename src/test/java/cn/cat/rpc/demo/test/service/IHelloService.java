@@ -1,5 +1,5 @@
 package cn.cat.rpc.demo.test.service;
 
-public interface HelloService {
+public interface IHelloService {
     void echo();
 }
