@@ -1,7 +1,7 @@
 package cn.cat.rpc.demo.network.serialization.factory;
 
-import cn.cat.rpc.demo.network.serialization.JsonSerialization;
-import cn.cat.rpc.demo.network.serialization.ProtobufSerialization;
+import cn.cat.rpc.demo.network.serialization.impl.JsonSerialization;
+import cn.cat.rpc.demo.network.serialization.impl.ProtobufSerialization;
 import cn.cat.rpc.demo.network.serialization.RpcSerialization;
 import cn.cat.rpc.demo.type.Constants;
 

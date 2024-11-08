@@ -1,7 +1,6 @@
 package cn.cat.rpc.demo.network.codec;
 
 import cn.cat.rpc.demo.network.msg.RpcMsg;
-import cn.cat.rpc.demo.network.serialization.ProtobufSerialization;
 import cn.cat.rpc.demo.network.serialization.RpcSerialization;
 import cn.cat.rpc.demo.network.serialization.factory.SerializationFactory;
 import cn.cat.rpc.demo.type.Constants;

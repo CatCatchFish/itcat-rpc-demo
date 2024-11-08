@@ -1,8 +1,12 @@
 package cn.cat.rpc.demo.registry;
 
+import cn.cat.rpc.demo.router.RoundRobinLoadBalancer;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RedisRegistryCenter {
     private static Jedis jedis;   //非切片额客户端连接
@@ -36,7 +40,18 @@ public class RedisRegistryCenter {
      * @param nozzle 接口名称
      */
     public static String obtainProvider(String nozzle, String alias) {
-        return jedis.srandmember(nozzle + "_" + alias);
+        List<String> discoveries = discoveries(nozzle, alias);
+        final RoundRobinLoadBalancer loadBalancer = new RoundRobinLoadBalancer();
+        return loadBalancer.select(discoveries);
+    }
+
+    /**
+     * 服务发现
+     *
+     * @return 服务列表
+     */
+    private static List<String> discoveries(String nozzle, String alias) {
+        return new ArrayList<>(jedis.smembers(nozzle + "_" + alias));
     }
 
     public static Jedis jedis() {

@@ -3,7 +3,6 @@ package cn.cat.rpc.demo.network.server;
 import cn.cat.rpc.demo.domain.LocalServerInfo;
 import cn.cat.rpc.demo.network.codec.RpcDecoder;
 import cn.cat.rpc.demo.network.codec.RpcEncoder;
-import cn.cat.rpc.demo.network.msg.Request;
 import cn.cat.rpc.demo.network.util.NetUtil;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;

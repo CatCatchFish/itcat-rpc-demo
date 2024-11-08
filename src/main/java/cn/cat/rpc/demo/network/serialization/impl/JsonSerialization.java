@@ -1,5 +1,6 @@
-package cn.cat.rpc.demo.network.serialization;
+package cn.cat.rpc.demo.network.serialization.impl;
 
+import cn.cat.rpc.demo.network.serialization.RpcSerialization;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONException;
 
@@ -12,7 +13,7 @@ public class JsonSerialization implements RpcSerialization {
             // 使用Fastjson将对象序列化为JSON格式的字符串
             String jsonString = JSON.toJSONString(obj);
             // 将JSON字符串转换为byte数组
-            return jsonString.getBytes("UTF-8");
+            return jsonString.getBytes(StandardCharsets.UTF_8);
         } catch (JSONException e) {
             // 捕获序列化过程中可能发生的异常
             throw new IOException("Error serializing object to JSON", e);

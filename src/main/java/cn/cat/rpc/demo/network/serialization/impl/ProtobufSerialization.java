@@ -1,5 +1,6 @@
-package cn.cat.rpc.demo.network.serialization;
+package cn.cat.rpc.demo.network.serialization.impl;
 
+import cn.cat.rpc.demo.network.serialization.RpcSerialization;
 import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtobufIOUtil;
 import com.dyuproject.protostuff.Schema;
@@ -11,8 +12,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ProtobufSerialization implements RpcSerialization {
-    private static Map<Class<?>, Schema<?>> cachedSchema = new ConcurrentHashMap<>();
-    private static Objenesis objenesis = new ObjenesisStd();
+    private static final Map<Class<?>, Schema<?>> cachedSchema = new ConcurrentHashMap<>();
+    private static final Objenesis objenesis = new ObjenesisStd();
 
     public ProtobufSerialization() {
     }
