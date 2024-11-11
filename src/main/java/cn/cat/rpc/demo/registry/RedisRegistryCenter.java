@@ -39,10 +39,8 @@ public class RedisRegistryCenter {
      *
      * @param nozzle 接口名称
      */
-    public static String obtainProvider(String nozzle, String alias) {
-        List<String> discoveries = discoveries(nozzle, alias);
-        final RoundRobinLoadBalancer loadBalancer = new RoundRobinLoadBalancer();
-        return loadBalancer.select(discoveries);
+    public static List<String> obtainProvider(String nozzle, String alias) {
+        return discoveries(nozzle, alias);
     }
 
     /**

@@ -7,10 +7,13 @@ import cn.cat.rpc.demo.network.msg.Request;
 import cn.cat.rpc.demo.reflect.JDKProxy;
 import cn.cat.rpc.demo.reflect.util.ClassLoaderUtil;
 import cn.cat.rpc.demo.registry.RedisRegistryCenter;
+import cn.cat.rpc.demo.router.RoundRobinLoadBalancer;
 import com.alibaba.fastjson.JSON;
 import io.netty.channel.ChannelFuture;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.util.Assert;
+
+import java.util.List;
 
 public class ConsumerBean extends ConsumerConfig implements FactoryBean {
     private ChannelFuture channelFuture;
@@ -20,8 +23,11 @@ public class ConsumerBean extends ConsumerConfig implements FactoryBean {
     public Object getObject() throws Exception {
         // 获取redis连接
         if (null == rpcProviderConfig) {
-            String infoStr = RedisRegistryCenter.obtainProvider(nozzle, alias);
-            rpcProviderConfig = JSON.parseObject(infoStr, RpcProviderConfig.class);
+            List<String> providerList = RedisRegistryCenter.obtainProvider(nozzle, alias);
+            // 负载均衡
+            final RoundRobinLoadBalancer loadBalancer = new RoundRobinLoadBalancer();
+            String providerInfo = loadBalancer.select(providerList);
+            rpcProviderConfig = JSON.parseObject(providerInfo, RpcProviderConfig.class);
         }
         Assert.notNull(rpcProviderConfig, "rpcProviderConfig is null");
 
