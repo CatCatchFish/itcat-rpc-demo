@@ -29,16 +29,21 @@ public class MyServerHandler extends ChannelInboundHandlerAdapter {
             RpcMsg<?> rpcMsg = (RpcMsg<?>) obj;
             MsgHeader header = rpcMsg.getHeader();
             Request msg = (Request) rpcMsg.getBody();
-            // 映射处理
-            Class<?> classType = ClassLoaderUtil.forName(msg.getNozzle());
-            Method method = classType.getMethod(msg.getMethodName(), msg.getParamTypes());
-            Object objectBean = applicationContext.getBean(msg.getRef());
-            Object result = method.invoke(objectBean, msg.getArgs());
-
             //反馈
             Response request = new Response();
             request.setRequestId(msg.getRequestId());
-            request.setResult(result);
+            try {
+                // 映射处理
+                Class<?> classType = ClassLoaderUtil.forName(msg.getNozzle());
+                Method method = classType.getMethod(msg.getMethodName(), msg.getParamTypes());
+                Object objectBean = applicationContext.getBean(msg.getRef());
+                Object result = method.invoke(objectBean, msg.getArgs());
+                // 反馈结果
+                request.setResult(result);
+            } catch (Exception e) {
+                // 反馈异常
+                request.setException(e);
+            }
 
             String serializationType = new String(header.getSerialization(), StandardCharsets.UTF_8);
             RpcMsg<Response> responseRpcMsg = MsgBuildUtil.buildResponseMsg(
