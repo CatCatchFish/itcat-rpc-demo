@@ -9,6 +9,7 @@ import cn.cat.rpc.demo.network.msg.RpcMsg;
 import cn.cat.rpc.demo.network.util.MsgBuildUtil;
 import cn.cat.rpc.demo.type.Constants;
 import io.netty.channel.Channel;
+
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -53,11 +54,12 @@ public class SyncWrite {
 
         Response response = writeFuture.get(timeout, TimeUnit.MILLISECONDS);
         if (response == null) {
+            response = new Response();
             if (writeFuture.isTimeout()) {
-                throw new TimeoutException();
+                response.setException(new TimeoutException("writeAndSync timeout"));
             } else {
                 // write exception
-                throw new Exception(writeFuture.cause());
+                response.setException(new Exception(writeFuture.cause()));
             }
         }
         return response;

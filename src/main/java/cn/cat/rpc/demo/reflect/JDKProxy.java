@@ -7,8 +7,8 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
 public class JDKProxy {
-    public static <T> T getProxy(Class<T> interfaceClass, Request request) throws Exception {
-        InvocationHandler handler = new JDKInvocationHandler(request);
+    public static <T> T getProxy(Class<T> interfaceClass, Request request, String currentProvider) throws Exception {
+        InvocationHandler handler = new JDKInvocationHandler(request, currentProvider);
         ClassLoader loader = ClassLoaderUtil.getCurrentClassLoader();
         T result = (T) Proxy.newProxyInstance(loader, new Class[]{interfaceClass}, handler);
         return result;
