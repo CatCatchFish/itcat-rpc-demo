@@ -1,10 +1,10 @@
 package cn.cat.rpc.demo.reflect.tolerant;
 
 import cn.cat.rpc.demo.domain.RpcProviderConfig;
-import cn.cat.rpc.demo.network.client.ClientSocket;
 import cn.cat.rpc.demo.network.future.impl.SyncWrite;
 import cn.cat.rpc.demo.network.msg.Request;
 import cn.cat.rpc.demo.network.msg.Response;
+import cn.cat.rpc.demo.network.util.ConnectUtil;
 import cn.cat.rpc.demo.registry.RedisRegistryCenter;
 import cn.cat.rpc.demo.type.Constants;
 import com.alibaba.fastjson.JSON;
@@ -30,19 +30,7 @@ public class FailoverFaultTolerantStrategy {
         ChannelFuture channelFuture = Constants.PROVIDER_CHANNEL_FUTURE_MAP.get(attemptProvider);
         if (null == channelFuture) {
             RpcProviderConfig providerConfig = JSON.parseObject(attemptProvider, RpcProviderConfig.class);
-
-            ClientSocket clientSocket = new ClientSocket(providerConfig.getHost(),
-                    providerConfig.getPort());
-
-            new Thread(clientSocket).start();
-            // 等待连接成功
-            for (int i = 0; i < 100; i++) {
-                if (null != channelFuture) break;
-                Thread.sleep(500);
-                channelFuture = clientSocket.getFuture();
-                // 将通信管道存入map
-                Constants.PROVIDER_CHANNEL_FUTURE_MAP.put(attemptProvider, channelFuture);
-            }
+            channelFuture = ConnectUtil.connect(attemptProvider, providerConfig);
         }
         // 另选服务提供者的通信管道
         Response response = new SyncWrite().writeAndSync(channelFuture.channel(), request, 3000);
